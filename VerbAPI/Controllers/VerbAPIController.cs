@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using VerbAPI.Models;
 using VerbAPI.Models.Dto;
+using VerbAPI.Data;
 
 namespace VerbAPI.Controllers
 {
@@ -13,10 +14,13 @@ namespace VerbAPI.Controllers
 		[HttpGet]
 		public IEnumerable<VerbDTO> GetVerb()
 		{
-			return new List<VerbDTO> {
-				new VerbDTO{Id = 1, Name = "Pool View"},
-				new VerbDTO{Id = 2, Name = "Beach View"}
-			};
+			return VerbStore.getList;
+		}
+
+		[HttpGet("{id:int}")]
+		public VerbDTO GetVerb(int id)
+		{
+			return VerbStore.getList.FirstOrDefault(u => u.Id == id);
 		}
 	}
 }

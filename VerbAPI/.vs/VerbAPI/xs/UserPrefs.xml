@@ -1,13 +1,16 @@
 ﻿<Properties StartupConfiguration="{D53817FF-CA29-4C2C-A845-AFE54C8E0993}|https">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.VerbAPI PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.VerbAPI PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Models/VerbModel.cs">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Program.cs">
     <Files>
-      <File FileName="Controllers/VerbAPIController.cs" Line="17" Column="29" />
-      <File FileName="Models/VerbModel.cs" Line="6" Column="30" />
+      <File FileName="Models/VerbModel.cs" Line="7" Column="41" />
+      <File FileName="Properties/launchSettings.json" Line="3" Column="9" />
+      <File FileName="Program.cs" Line="16" Column="24" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -15,15 +18,13 @@
           <Node name="VerbAPI" expanded="True">
             <Node name="VerbAPI" expanded="True">
               <Node name="Controllers" expanded="True" />
-              <Node name="Models" expanded="True">
-                <Node name="VerbModel.cs" selected="True" />
-              </Node>
+              <Node name="Properties" expanded="True" />
+              <Node name="appsettings.json" expanded="True" />
+              <Node name="Program.cs" selected="True" />
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

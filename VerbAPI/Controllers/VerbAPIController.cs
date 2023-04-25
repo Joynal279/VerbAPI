@@ -12,8 +12,9 @@ namespace VerbAPI.Controllers
 	public class VerbAPIController : ControllerBase
 	{
 		[HttpGet]
+		[ProducesResponseType(StatusCodes.Status200OK)]
 		public ActionResult<VerbDTO> GetVerb()
-		{
+		{ 
 			return Ok(VerbStore.getList);
 		}
 
@@ -37,6 +38,26 @@ namespace VerbAPI.Controllers
 
 
             return Ok(verb);
+		}
+
+		[HttpPost]
+		[ProducesResponseType(StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+		public ActionResult<VerbDTO> CreateVerb([FromBody]VerbDTO verbDTO)
+		{
+			if (verbDTO == null)
+			{
+				return BadRequest(verbDTO);
+			}
+			if (verbDTO.Id > 0)
+			{
+				return StatusCode(StatusCodes.Status500InternalServerError);
+			}
+			verbDTO.Id = VerbStore.getList.OrderByDescending(u => u.Id).FirstOrDefault().Id + 1;
+			VerbStore.getList.Add(verbDTO);
+
+			return Ok(verbDTO);
 		}
 	}
 }

@@ -18,7 +18,7 @@ namespace VerbAPI.Controllers
 			return Ok(VerbStore.getList);
 		}
 
-		[HttpGet("{id:int}")]
+		[HttpGet("{id:int}", Name = "GetVerb")]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -41,9 +41,10 @@ namespace VerbAPI.Controllers
 		}
 
 		[HttpPost]
-		[ProducesResponseType(StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status201Created)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+		[ProducesResponseType(StatusCodes.Status500InternalServerError
+			)]
 		public ActionResult<VerbDTO> CreateVerb([FromBody]VerbDTO verbDTO)
 		{
 			if (verbDTO == null)
@@ -57,7 +58,7 @@ namespace VerbAPI.Controllers
 			verbDTO.Id = VerbStore.getList.OrderByDescending(u => u.Id).FirstOrDefault().Id + 1;
 			VerbStore.getList.Add(verbDTO);
 
-			return Ok(verbDTO);
+			return CreatedAtRoute("GetVerb", new {id = verbDTO.Id} , verbDTO);
 		}
 	}
 }

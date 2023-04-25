@@ -12,15 +12,31 @@ namespace VerbAPI.Controllers
 	public class VerbAPIController : ControllerBase
 	{
 		[HttpGet]
-		public IEnumerable<VerbDTO> GetVerb()
+		public ActionResult<VerbDTO> GetVerb()
 		{
-			return VerbStore.getList;
+			return Ok(VerbStore.getList);
 		}
 
 		[HttpGet("{id:int}")]
-		public VerbDTO GetVerb(int id)
+		[ProducesResponseType(StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status404NotFound)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		public ActionResult<VerbDTO> GetVerb(int id)
 		{
-			return VerbStore.getList.FirstOrDefault(u => u.Id == id);
+			if (id == 0)
+			{
+				return BadRequest();
+			}
+
+			var verb = VerbStore.getList.FirstOrDefault(u => u.Id == id);
+
+			if (verb == null)
+			{
+				return NotFound();
+			}
+
+
+            return Ok(verb);
 		}
 	}
 }

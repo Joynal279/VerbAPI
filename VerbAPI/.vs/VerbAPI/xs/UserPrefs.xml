@@ -1,30 +1,36 @@
 ﻿<Properties StartupConfiguration="{D53817FF-CA29-4C2C-A845-AFE54C8E0993}|https">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.VerbAPI PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.VerbAPI PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/VerbAPIController.cs">
     <Files>
-      <File FileName="Models/VerbModel.cs" Line="7" Column="41" />
-      <File FileName="Properties/launchSettings.json" Line="3" Column="9" />
+      <File FileName="Models/VerbModel.cs" Line="5" Column="3" />
+      <File FileName="Properties/launchSettings.json" />
       <File FileName="Program.cs" Line="16" Column="24" />
+      <File FileName="Controllers/VerbAPIController.cs" Line="35" Column="1" />
+      <File FileName="Models/Dto/VerbDto.cs" Line="8" Column="1" />
+      <File FileName="Data/VerbStore.cs" Line="8" Column="60" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="VerbAPI" expanded="True">
-            <Node name="VerbAPI" expanded="True">
+            <Node name="VerbAPI" expanded="True" selected="True">
               <Node name="Controllers" expanded="True" />
+              <Node name="Data" expanded="True" />
+              <Node name="Models" expanded="True">
+                <Node name="Dto" expanded="True" />
+              </Node>
               <Node name="Properties" expanded="True" />
               <Node name="appsettings.json" expanded="True" />
-              <Node name="Program.cs" selected="True" />
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>

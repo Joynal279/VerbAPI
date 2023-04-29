@@ -11,7 +11,8 @@ namespace VerbAPI.Controllers
 	[ApiController]
 	public class VerbAPIController : ControllerBase
 	{
-		[HttpGet]
+        //MARK: - GET METHOD
+        [HttpGet]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		public ActionResult<VerbDTO> GetVerb()
 		{ 
@@ -40,11 +41,11 @@ namespace VerbAPI.Controllers
             return Ok(verb);
 		}
 
+		//MARK: - POST METHOD
 		[HttpPost]
 		[ProducesResponseType(StatusCodes.Status201Created)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		[ProducesResponseType(StatusCodes.Status500InternalServerError
-			)]
+		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
 		public ActionResult<VerbDTO> CreateVerb([FromBody]VerbDTO verbDTO)
 		{
 			//if (!ModelState.IsValid)
@@ -72,7 +73,8 @@ namespace VerbAPI.Controllers
 			return CreatedAtRoute("GetVerb", new {id = verbDTO.Id} , verbDTO);
 		}
 
-		[ProducesResponseType(StatusCodes.Status204NoContent)]
+        //MARK: - DELETE METHOD
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		[HttpDelete("{id:int}", Name = "DeleteVerb")]
@@ -90,6 +92,8 @@ namespace VerbAPI.Controllers
 			VerbStore.getList.Remove(verb);
 			return NoContent();
 		}
+
+
 	}
 }
 

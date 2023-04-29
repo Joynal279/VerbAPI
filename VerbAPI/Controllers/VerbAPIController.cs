@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using VerbAPI.Models;
 using VerbAPI.Models.Dto;
 using VerbAPI.Data;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace VerbAPI.Controllers
 {
@@ -11,11 +12,11 @@ namespace VerbAPI.Controllers
 	[ApiController]
 	public class VerbAPIController : ControllerBase
 	{
-        //MARK: - GET METHOD
-        [HttpGet]
+		//MARK: - GET METHOD
+		[HttpGet]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		public ActionResult<VerbDTO> GetVerb()
-		{ 
+		{
 			return Ok(VerbStore.getList);
 		}
 
@@ -38,7 +39,7 @@ namespace VerbAPI.Controllers
 			}
 
 
-            return Ok(verb);
+			return Ok(verb);
 		}
 
 		//MARK: - POST METHOD
@@ -46,7 +47,7 @@ namespace VerbAPI.Controllers
 		[ProducesResponseType(StatusCodes.Status201Created)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
-		public ActionResult<VerbDTO> CreateVerb([FromBody]VerbDTO verbDTO)
+		public ActionResult<VerbDTO> CreateVerb([FromBody] VerbDTO verbDTO)
 		{
 			//if (!ModelState.IsValid)
 			//{
@@ -63,18 +64,18 @@ namespace VerbAPI.Controllers
 			{
 				return BadRequest(verbDTO);
 			}
-			if (verbDTO.Id > 0) 
+			if (verbDTO.Id > 0)
 			{
 				return StatusCode(StatusCodes.Status500InternalServerError);
 			}
 			verbDTO.Id = VerbStore.getList.OrderByDescending(u => u.Id).FirstOrDefault().Id + 1;
 			VerbStore.getList.Add(verbDTO);
 
-			return CreatedAtRoute("GetVerb", new {id = verbDTO.Id} , verbDTO);
+			return CreatedAtRoute("GetVerb", new { id = verbDTO.Id }, verbDTO);
 		}
 
-        //MARK: - DELETE METHOD
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
+		//MARK: - DELETE METHOD
+		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		[HttpDelete("{id:int}", Name = "DeleteVerb")]
@@ -95,7 +96,9 @@ namespace VerbAPI.Controllers
 
 		//MARK: - PUT METHOD
 		[HttpPut]
-		public IActionResult UpdateVerb(int id, [FromBody]VerbDTO verbDTO)
+		[ProducesResponseType(StatusCodes.Status204NoContent)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		public IActionResult UpdateVerb(int id, [FromBody] VerbDTO verbDTO)
 		{
 			if (verbDTO == null || id != verbDTO.Id)
 			{
@@ -104,11 +107,34 @@ namespace VerbAPI.Controllers
 			var verb = VerbStore.getList.FirstOrDefault(u => u.Id == id);
 
 			verb.Name = verbDTO.Name;
-            verb.occupancy = verbDTO.occupancy;
-            verb.Sqft = verbDTO.Sqft;
-            return NoContent();
+			verb.occupancy = verbDTO.occupancy;
+			verb.Sqft = verbDTO.Sqft;
+			return NoContent();
 		}
 
+		//MARK: - PATCH METHOD
+		[HttpPatch("{id:int}", Name = "UpdatePartialVilla")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+		public IActionResult UpdatePartialVilla(int id, JsonPatchDocument<VerbDTO> patchDTO)
+		{
+			if (patchDTO == null)
+			{
+				return BadRequest();
+			}
+			var verb = VerbStore.getList.FirstOrDefault(u => u.Id == id);
+			if (verb == null)
+			{
+				return BadRequest();
+			}
+			patchDTO.ApplyTo(verb, ModelState);
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
+			return NoContent();
+
+		}
 
 
     }

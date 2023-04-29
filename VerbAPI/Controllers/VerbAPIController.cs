@@ -47,11 +47,22 @@ namespace VerbAPI.Controllers
 			)]
 		public ActionResult<VerbDTO> CreateVerb([FromBody]VerbDTO verbDTO)
 		{
+			//if (!ModelState.IsValid)
+			//{
+			//	return BadRequest(ModelState);
+			//}
+
+			if (VerbStore.getList.FirstOrDefault(u => u.Name.ToLower() == verbDTO.Name.ToLower()) != null)
+			{
+				ModelState.AddModelError("Custom Error", "Verb already exists");
+				return BadRequest(ModelState);
+			}
+
 			if (verbDTO == null)
 			{
 				return BadRequest(verbDTO);
 			}
-			if (verbDTO.Id > 0)
+			if (verbDTO.Id > 0) 
 			{
 				return StatusCode(StatusCodes.Status500InternalServerError);
 			}
@@ -59,6 +70,25 @@ namespace VerbAPI.Controllers
 			VerbStore.getList.Add(verbDTO);
 
 			return CreatedAtRoute("GetVerb", new {id = verbDTO.Id} , verbDTO);
+		}
+
+		[ProducesResponseType(StatusCodes.Status204NoContent)]
+		[ProducesResponseType(StatusCodes.Status404NotFound)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		[HttpDelete("{id:int}", Name = "DeleteVerb")]
+		public IActionResult DeleteVerb(int id)
+		{
+			if (id == 0)
+			{
+				return BadRequest();
+			}
+			var verb = VerbStore.getList.FirstOrDefault(u => u.Id == id);
+			if (verb == null)
+			{
+				return NotFound();
+			}
+			VerbStore.getList.Remove(verb);
+			return NoContent();
 		}
 	}
 }

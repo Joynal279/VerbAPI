@@ -1,24 +1,26 @@
 ﻿<Properties StartupConfiguration="{D53817FF-CA29-4C2C-A845-AFE54C8E0993}|https">
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.ItemProperties.VerbAPI PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/VerbAPIController.cs">
     <Files>
-      <File FileName="Models/VerbModel.cs" Line="5" Column="3" />
+      <File FileName="Models/VerbModel.cs" Line="6" Column="30" />
       <File FileName="Properties/launchSettings.json" />
-      <File FileName="Program.cs" Line="16" Column="24" />
-      <File FileName="Controllers/VerbAPIController.cs" Line="35" Column="1" />
-      <File FileName="Models/Dto/VerbDto.cs" Line="8" Column="1" />
-      <File FileName="Data/VerbStore.cs" Line="8" Column="60" />
+      <File FileName="Program.cs" />
+      <File FileName="Controllers/VerbAPIController.cs" Line="53" Column="5" />
+      <File FileName="Models/Dto/VerbDto.cs" Line="4" Column="22" />
+      <File FileName="Data/VerbStore.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="VerbAPI" expanded="True">
-            <Node name="VerbAPI" expanded="True" selected="True">
-              <Node name="Controllers" expanded="True" />
+            <Node name="VerbAPI" expanded="True">
+              <Node name="Controllers" expanded="True">
+                <Node name="VerbAPIController.cs" selected="True" />
+              </Node>
               <Node name="Data" expanded="True" />
               <Node name="Models" expanded="True">
                 <Node name="Dto" expanded="True" />
@@ -31,6 +33,6 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

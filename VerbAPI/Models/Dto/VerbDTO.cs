@@ -9,6 +9,8 @@ namespace VerbAPI.Models.Dto
         [Required]
         [MaxLength(30)]
         public string Name { get; set; }
+        public int occupancy { get; set; }
+        public int Sqft { get; set; }
 
     }
 }

@@ -93,7 +93,24 @@ namespace VerbAPI.Controllers
 			return NoContent();
 		}
 
+		//MARK: - PUT METHOD
+		[HttpPut]
+		public IActionResult UpdateVerb(int id, [FromBody]VerbDTO verbDTO)
+		{
+			if (verbDTO == null || id != verbDTO.Id)
+			{
+				return BadRequest();
+			}
+			var verb = VerbStore.getList.FirstOrDefault(u => u.Id == id);
 
-	}
+			verb.Name = verbDTO.Name;
+            verb.occupancy = verbDTO.occupancy;
+            verb.Sqft = verbDTO.Sqft;
+            return NoContent();
+		}
+
+
+
+    }
 }
 
